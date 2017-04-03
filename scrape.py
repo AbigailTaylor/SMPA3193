@@ -1,13 +1,13 @@
 import csv
-import requests
 from BeautifulSoup import BeautifulSoup
+import urllib
 
-url = 'http://m.nationals.mlb.com/roster/transactions/2017/03'
-response = requests.get(url)
-html = response.content
-
-soup = BeautifulSoup(html)
+r = urllib.urlopen('http://m.nationals.mlb.com/roster/transactions/2017/03').read()
+soup = BeautifulSoup(r)
 table = soup.find('table')
+print type(soup)
+
+print soup.prettify()[0:1000]
 
 list_of_rows = []
 counter = 1
